@@ -12,5 +12,5 @@ sudo pip3 install pandas
 pip install ryu
 sudo apt install d-itg
 sudo apt install nload
-'''
+
 
