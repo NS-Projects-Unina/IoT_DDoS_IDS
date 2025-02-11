@@ -33,6 +33,19 @@ Gli attacchi e la relativa raccolta dei pacchetti si è svolta seguendo i seguen
 source ambiente_ryu/bin/activate                                     # utilizzo un ambiente virtuale python3.9 
                                                                      # per compatibilità con ryu
 python3.9 -m ryu.cmd.manager controller.py          
-sudo python3 topology.py                                             # avvia la topologia
+sudo python3 topology.py                                             # avvio la topologia
 xterm h1 h2 h3                                                       # accedo ai terminali dei nodi
+```
+2) Avvio ricevente sul terminale del nodo vittima
+```bash
+ITGRecv	   
+```
+4) Avvio attacchi sui terminali degli altri nodi
+```bash
+ITGSend -T UDP -a 10.0.0.3 -t 120000 -C 200000 -c 200000 -l udp_att  # DoS UDP 
+hping3 -S -p 80 -c 200000 10.0.0.3                                   # DoS SYN
+```
+6) Fine
+```bash
+sudo mn -c                                                           # per cancellare la rete
 ```
