@@ -26,3 +26,13 @@ sudo PYTHON=python3 mininet/util/install.sh -nv
 ```bash
 sudo mn --switch ovsbr --test pingall # Test Mininet installation
 ```
+## Raccolta dei dataset
+Gli attacchi e la relativa raccolta dei pacchetti si è svolta seguendo i seguenti comandi:
+1) Avvio della rete
+```bash
+source ambiente_ryu/bin/activate                                     # utilizzo un ambiente virtuale python3.9 
+                                                                     # per compatibilità con ryu
+python3.9 -m ryu.cmd.manager controller.py          
+sudo python3 topology.py                                             # avvia la topologia
+xterm h1 h2 h3                                                       # accedo ai terminali dei nodi
+```
