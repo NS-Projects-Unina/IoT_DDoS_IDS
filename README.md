@@ -26,6 +26,8 @@ sudo PYTHON=python3 mininet/util/install.sh -nv
 ```bash
 sudo mn --switch ovsbr --test pingall # Test Mininet installation
 ```
+4) Creare una cartella scripts e copiare dentro i file controller.py e topology.py
+   
 ## Raccolta dei dataset
 Gli attacchi e la relativa raccolta dei pacchetti si è svolta seguendo i seguenti comandi:
 1) Avvio della rete
