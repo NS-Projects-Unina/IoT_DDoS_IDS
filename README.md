@@ -5,12 +5,12 @@ L'obiettivo del progetto è stato quello di sviluppare un IDS integrato nel cont
 ## Installazione
 E' necessario utilizzare una VM Ubuntu 22.04 e installare i seguenti pacchetti da terminale:
 
-'''bash
+```bash
 sudo apt install git
 sudo apt install python3-pip
 sudo pip3 install pandas
 pip install ryu
 sudo apt install d-itg
 sudo apt install nload
-
+```
 
