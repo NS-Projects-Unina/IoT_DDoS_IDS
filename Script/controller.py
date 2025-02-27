@@ -34,12 +34,7 @@ class SimpleSwitchIDS(app_manager.RyuApp):
         self.mac_to_port = {}           # Per il MAC learning
         self.datapaths = {}             # Per salvare i datapath degli switch connessi
         self.counters = {}          # Per contare i pacchetti sospetti per IP
-
-        # Inizializzo con gli indirizzi IP della nostra rete
-        self.counters.setdefault("10.0.0.1", 0)
-        self.counters.setdefault("10.0.0.2", 0)
-        self.counters.setdefault("10.0.0.3", 0)
-
+        
         # Inizializzo il modello
         self.kmeans_model = joblib.load('Dataset/modello_e_soglia.pkl')  
         self.threshold = 10             # Soglia per rilevamento attacco
@@ -188,7 +183,8 @@ class SimpleSwitchIDS(app_manager.RyuApp):
         #self.logger.info(prediction)
 
         # Se la predizione appartiene al cluster maligno allora aggiorno i contatori e in caso superila soglia blocco l'IP
-        if prediction[0] == 3:  
+        if prediction[0] == 3:
+            self.counters.setdefault(ip_pkt.src, 0)
             self.counters[ip_pkt.src] += 1
             if self.counters[ip_pkt.src] > self.threshold:
                 self.logger.warning(f"Pacchetto sospetto da {ip_pkt.src}, bloccato.")
@@ -220,6 +216,7 @@ class SimpleSwitchIDS(app_manager.RyuApp):
         self.logger.info(prediction)
 
         if prediction[0] == 3:  
+            self.counters.setdefault(ip_pkt.src, 0)
             self.counters[ip_pkt.src] += 1
             if self.counters[ip_pkt.src] > self.threshold:
                 self.logger.warning(f"Pacchetto sospetto da {ip_pkt.src}, bloccato.")
